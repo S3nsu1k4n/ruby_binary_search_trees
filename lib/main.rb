@@ -2,7 +2,9 @@
 
 require './lib/tree'
 
-array = [3, 2, 1, 3]
+array = (1..7).to_a
 
 tree = Tree.new(array)
 tree.pretty_print
+
+p tree.find(7)

@@ -6,7 +6,7 @@ require './lib/node'
 class Tree
   def initialize(array)
     @array = array.sort.uniq
-    @root = build_tree array
+    @root = build_tree @array
   end
 
   # turn array into balanced binary tree full of "Nodes" appropiatetly placed
@@ -37,7 +37,18 @@ class Tree
   def delete(value); end
 
   # return the node with the given value
-  def find(value); end
+  def find(value)
+    find_node(value)
+  end
+
+  def find_node(value, node = @root)
+    return node if node.nil? || node.data == value
+    # go left
+    return find_node(value, node.left) if value < node.data
+
+    # go right
+    find_node(value, node.right)
+  end
 
   # accepts a block
   # traverse the tree in breadth-first level order
