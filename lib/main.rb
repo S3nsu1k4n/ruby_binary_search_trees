@@ -8,3 +8,6 @@ tree = Tree.new(array)
 tree.pretty_print
 
 p tree.find(7)
+tree.insert(0)
+
+tree.pretty_print

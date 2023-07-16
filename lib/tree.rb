@@ -31,7 +31,22 @@ class Tree
   end
 
   # insert the given value
-  def insert(value); end
+  def insert(value, node = @root)
+    return node if node.nil? || node.data == value
+
+    # go left
+    if value < node.data
+      return insert(value, node.left) unless node.left.nil?
+
+      node.left = Node.new(value)
+    # go right
+    else
+      return insert(value, node.right) unless node.right.nil?
+
+      node.right = Node.new(value)
+    end
+    node
+  end
 
   # delete the given value
   def delete(value); end
