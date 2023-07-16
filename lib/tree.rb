@@ -49,7 +49,25 @@ class Tree
   end
 
   # delete the given value
-  def delete(value); end
+  def delete(value, node = @root)
+    return node if node.nil?
+
+    if !node.left.nil? && node.left.data == value
+      node2delete = node.left
+      node.left = node2delete.left.nil? ? node2delete.right : node2delete.left
+      return node
+    elsif !node.right.nil? && node.right.data == value
+      node2delete = node.right
+      node.right = node2delete.left.nil? ? node2delete.right : node2delete.left
+      return node
+    end
+
+    # go left
+    return delete(value, node.left) if value < node.data
+
+    # go right
+    delete(value, node.right)
+  end
 
   # return the node with the given value
   def find(value)
